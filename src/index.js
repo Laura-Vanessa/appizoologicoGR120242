@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 const animalRoutes = require("./routes/animal");
 const areaRoutes = require("./routes/area");
+const authroutes = require("./routes/authentication");
 const mongoose = require("mongoose");
 
 
@@ -15,9 +16,8 @@ app.use(parser.json());
 
 // transforma los datos a formato JSON //Gestión de las rutas usando el middleware
 app.use("/api/animals", animalRoutes);
-app.use(express.json()); 
-
 app.use("/api/areas", areaRoutes);
+app.use("/api", authroutes);
 app.use(express.json()); 
 //Conexión a la base de datos
 mongoose

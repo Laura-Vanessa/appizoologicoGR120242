@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router(); //manejador de rutas de express
 const animalSchema = require("../models/animal");
+const verifyToken = require('./validate_token');
+
 
 // Postear animales
 router.post("/", (req, res) => {
@@ -12,7 +14,7 @@ router.post("/", (req, res) => {
 });
 
 //Consultar todos los animales
-router.get("/", (req, res) => {
+router.get("/", verifyToken, (req, res) => {
   animalSchema
     .find()
     .then((data) => res.json(data))

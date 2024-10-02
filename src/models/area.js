@@ -1,12 +1,14 @@
-const express = require("express");
-const router = express.Router(); //manejador de rutas de express
-const animalSchema = require("../models/animal");
-//Nuevo animal
-router.post("/animals", (req, res) => {
-const animal = animalSchema(req.body);
-animal
-.save()
-.then((data) => res.json(data))
-.catch((error) => res.json({ message: error }));
+const mongoose = require("mongoose");
+
+const areaSchema = mongoose.Schema({
+    nombre:{
+        type:String,
+        required: true
+    },
+    descripcion: {
+        type: String,
+        required: true
+    },
+    animales: [{type: mongoose.Schema.Types.ObjectId,ref: 'Animal'}]
 });
-module.exports = router;
+module.exports=mongoose.model('Area', areaSchema);

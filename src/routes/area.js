@@ -3,14 +3,6 @@ const router = express.Router();
 const animalSchema = require("../models/animal");
 const areaSchema=require("../models/area");
 
-//Consultar todos los animales
-router.get("/", (req, res) => {
-   areaSchema
-      .find()
-      .then((data) => res.json(data))
-      .catch((error) => res.json({ message: error }));
-  });
-
 //areas 
 router.post("/", (req, res)=>{
     const area = areaSchema(req.body);
