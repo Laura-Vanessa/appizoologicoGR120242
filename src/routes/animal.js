@@ -14,7 +14,7 @@ router.post("/", (req, res) => {
 });
 
 //Consultar todos los animales
-router.get("/", verifyToken, (req, res) => {
+router.get("/",  (req, res) => {
   animalSchema
     .find()
     .then((data) => res.json(data))
